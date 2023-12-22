@@ -1,6 +1,8 @@
 # discord_clone
 
-This is a full-stack Discord clone app using the most popular MERN stack    
+This is a full-stack Discord clone app using the most popular MERN stack   
+
+> This readme file will be updated as the project progresses.
 
 This project will be build in multiple steps:
 
