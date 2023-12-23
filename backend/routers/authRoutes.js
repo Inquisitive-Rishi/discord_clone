@@ -3,14 +3,14 @@ const Joi = require('joi')
 const validator = require('express-joi-validation').createValidator({})
 
 const registerSchema = Joi.object({
-    username: Joi.string().min(6).max(14),
-    password: Joi.string().min(8).max(14),
-    email: Joi.string().email()
+    username: Joi.string().min(6).max(14).required(),
+    password: Joi.string().min(8).max(14).required(),
+    email: Joi.string().email().required()
 })
 
 const loginSchema = Joi.object({
-    username: Joi.string().min(6).max(14),
-    password: Joi.string().min(8).max(14)
+    email: Joi.string().email().required(),
+    password: Joi.string().min(8).max(14).required()
 })
 
 const registerValidation = validator.body(registerSchema)
