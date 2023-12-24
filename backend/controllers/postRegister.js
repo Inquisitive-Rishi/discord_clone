@@ -9,7 +9,7 @@ const postRegister = async (req,res) => {
     
         // check if user alreay exist
         if (userExists) {
-            res.send(409).send('Email already exists')
+            res.status(409).send('Email already exists')
         }
     
         // password encryption
@@ -27,8 +27,8 @@ const postRegister = async (req,res) => {
 
         res.status(201).json({
             userdetails: {
-                username: user.username,
-                email: user.email,
+                username: (await user).username,
+                email: (await user).email,
                 token: token
             }
         })
