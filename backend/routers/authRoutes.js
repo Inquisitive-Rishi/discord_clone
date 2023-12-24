@@ -1,5 +1,8 @@
 const router = require('express').Router()
 const Joi = require('joi')
+const postRegister = require('../controllers/postRegister')
+const postLogin = require('../controllers/postLogin')
+
 const validator = require('express-joi-validation').createValidator({})
 
 const registerSchema = Joi.object({
@@ -16,12 +19,8 @@ const loginSchema = Joi.object({
 const registerValidation = validator.body(registerSchema)
 const loginValidation = validator.body(loginSchema)
 
-router.post('/register', registerValidation, async (req,res) => {
-    res.send('This is register page')
-})
+router.post('/register', registerValidation, postRegister)
+router.post('/login', loginValidation, postLogin)
 
-router.post('/login', loginValidation, async (req,res) => {
-    res.send('This is login page')
-})
 
 module.exports = router
