@@ -34,7 +34,7 @@ const postRegister = async (req,res) => {
         })
     }
     catch {
-        res.send(500).send("OOPS! please try again")
+        res.status(500).send("OOPS! please try again")
     }
 }
 
