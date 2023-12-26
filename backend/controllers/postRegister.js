@@ -1,5 +1,6 @@
 const User = require('../models/user.model')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const postRegister = async (req,res) => {
     try {
@@ -23,7 +24,16 @@ const postRegister = async (req,res) => {
 
 
         // access token to be saved on the client side
-        const token = 'this will be a jwt token'
+        const token = jwt.sign(
+            {
+                userid: (await user)._id,
+                email: (await user).email
+            }, 
+            process.env.TOKEN_KEY,
+            {
+                expiresIn: "24h"
+            }
+        )
 
         res.status(201).json({
             userdetails: {
