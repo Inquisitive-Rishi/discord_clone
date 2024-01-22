@@ -9,16 +9,8 @@ const postLogin = async (req,res) => {
         const user = await User.findOne({ email: email })
     
         if (user && (await bcrypt.compare(password, user.password))) {
-            const token = jwt.sign(
-                {
-                    userid: (await user)._id,
-                    email: (await user).email
-                }, 
-                process.env.TOKEN_KEY,
-                {
-                    expiresIn: "24h"
-                }
-            )
+
+            const token = "JWT_TOKEN"
             
             return res.status(200).json({
                 userDetails: {

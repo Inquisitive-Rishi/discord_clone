@@ -12,7 +12,7 @@ const postRegister = async (req,res) => {
         if (userExists) {
             res.status(409).send('Email already exists')
         }
-    
+      
         // password encryption
         const encryptedPassword = await bcrypt.hash(password, 10)
     
@@ -24,21 +24,12 @@ const postRegister = async (req,res) => {
 
 
         // access token to be saved on the client side
-        const token = jwt.sign(
-            {
-                userid: (await user)._id,
-                email: (await user).email
-            }, 
-            process.env.TOKEN_KEY,
-            {
-                expiresIn: "24h"
-            }
-        )
+        const token = "JWT TOKEN"
 
         res.status(201).json({
             userdetails: {
-                username: (await user).username,
-                email: (await user).email,
+                username: user.username,
+                email: user.email,
                 token: token
             }
         })
