@@ -2,6 +2,7 @@ const router = require('express').Router()
 const Joi = require('joi')
 const postRegister = require('../controllers/postRegister')
 const postLogin = require('../controllers/postLogin')
+const auth = require('../middlewares/auth')
 
 const validator = require('express-joi-validation').createValidator({})
 
@@ -21,6 +22,10 @@ const loginValidation = validator.body(loginSchema)
 
 router.post('/register', registerValidation, postRegister)
 router.post('/login', loginValidation, postLogin)
+
+router.get('/test', auth, (req, res) => {
+    res.send("request passed")
+}) 
 
 
 module.exports = router
